@@ -7,7 +7,6 @@ import com.xuecheng.content.model.dto.CourseCategoryTreeDto;
 import com.xuecheng.content.service.CourseCategoryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -29,7 +28,9 @@ public class CourseCategoryServiceImpl implements CourseCategoryService {
     @Override
     public List<CourseCategoryTreeDto> treeNodes(String id) {
         List<CourseCategoryTreeDto> courseCategoryTreeDtoList = courseCategoryMapper.selectTreeNodes(id);
-        Map<String, CourseCategoryTreeDto> map = courseCategoryTreeDtoList.stream().filter(item -> !StrUtil.equals(id, item.getId())).collect(Collectors.toMap(CourseCategoryTreeDto::getId, value -> value, (key1, key2) -> key1));
+        Map<String, CourseCategoryTreeDto> map = courseCategoryTreeDtoList.stream()
+                .filter(item -> !StrUtil.equals(id, item.getId()))
+                .collect(Collectors.toMap(CourseCategoryTreeDto::getId, value -> value, (key1, key2) -> key1));
 
         List<CourseCategoryTreeDto> courseCategoryTreeDtos = new ArrayList<>();
 
@@ -49,8 +50,6 @@ public class CourseCategoryServiceImpl implements CourseCategoryService {
 
                         courseCategoryTreeDto1.getChildrenTreeNodes().add(courseCategoryTreeDto);
                     }
-
-
 
                 });
 

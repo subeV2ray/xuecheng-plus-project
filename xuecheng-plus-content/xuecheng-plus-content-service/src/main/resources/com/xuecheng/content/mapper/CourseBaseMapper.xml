@@ -28,5 +28,11 @@
     <sql id="Base_Column_List">
         id, company_id, company_name, name, users, tags, mt, st, grade, teachmode, description, pic, create_date, change_date, create_people, change_people, audit_status, status
     </sql>
+    <insert id="createCourseBase">
+        INSERT INTO course_base(name, users, mt, st, grade, teachmode, description, pic, company_id, company_name,
+                                create_date, create_people, audit_status, status)
+        VALUES (#{name}, #{users}, #{mt}, #{st}, #{grade}, #{teachmode}, #{description}, #{pic}, #{companyId},
+                #{companyName}, #{createDate}, #{createPeople}, #{auditStatus}, #{status})
+    </insert>
 
 </mapper>
